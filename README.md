@@ -54,6 +54,8 @@
 <img width="6%" src="media/logo/AllureTestOps.svg">
 <img width="6%" src="media/logo/Jira.svg">
 <img width="6%" src="media/logo/Telegram.svg">
+<img width="6%" src="media/logo/GitHub.svg">
+<img width="6%" src="media/logo/Intelij_IDEA.svg"> 
 </p>
 
 ---
