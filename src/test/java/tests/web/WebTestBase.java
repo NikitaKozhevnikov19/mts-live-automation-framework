@@ -17,23 +17,26 @@ public class WebTestBase {
     @BeforeAll
     static void setup() {
         Configuration.baseUrl = "https://live.mts.ru";
-        Configuration.browser = System.getProperty("browser", "chrome");
-        Configuration.browserVersion = System.getProperty("browserVersion", "121.0");
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
-        Configuration.timeout = 10000;
-        Configuration.pageLoadStrategy = "eager";
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserVersion = System.getProperty("browserVersion");
 
         String remoteUrl = System.getProperty("remoteUrl");
         if (remoteUrl != null) {
             Configuration.remote = remoteUrl;
+            Configuration.pageLoadStrategy = "eager";
+
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("selenoid:options", Map.of(
                     "enableVNC", true,
                     "enableVideo", true
             ));
             Configuration.browserCapabilities = capabilities;
+        } else {
+            Configuration.pageLoadStrategy = "normal";
         }
 
+        Configuration.timeout = 10000;
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
