@@ -43,13 +43,13 @@
 <p align="center">
 <img width="6%" src="media/logo/Java.svg">
 <img width="6%" src="media/logo/Selenide.svg">
-<img width="6%" src="media/logo/RestAssured.svg">
-<img width="6%" src="media/logo/Appium.svg">
+<img width="6%" src="media/logo/RestAssured.png">
+<img width="6%" src="media/logo/Appium.png">
 <img width="6%" src="media/logo/JUnit5.svg">
 <img width="6%" src="media/logo/Gradle.svg">
 <img width="6%" src="media/logo/Jenkins.svg">
 <img width="6%" src="media/logo/Selenoid.svg">
-<img width="6%" src="media/logo/Browserstack.svg">
+<img width="6%" src="media/logo/Browserstack.png">
 <img width="6%" src="media/logo/Allure_Report.svg">
 <img width="6%" src="media/logo/AllureTestOps.svg">
 <img width="6%" src="media/logo/Jira.svg">
