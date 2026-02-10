@@ -20,6 +20,8 @@ public class WebTestBase {
         Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.browserVersion = System.getProperty("browserVersion", "121.0");
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
+        Configuration.timeout = 10000;
+        Configuration.pageLoadStrategy = "eager";
 
         String remoteUrl = System.getProperty("remoteUrl");
         if (remoteUrl != null) {
