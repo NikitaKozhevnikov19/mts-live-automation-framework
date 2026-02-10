@@ -59,6 +59,7 @@ tasks.withType(Test).configureEach {
     useJUnitPlatform()
 
     systemProperties(System.getProperties())
+    systemProperty "file.encoding", "UTF-8"
 
     testLogging {
         lifecycle {
