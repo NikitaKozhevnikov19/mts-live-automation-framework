@@ -1,5 +1,6 @@
 package helpers;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
@@ -26,10 +27,20 @@ public class Attachments {
     // Для веба (Selenoid)
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
     public static String addVideo() {
-        return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
-                + "https://selenoid.autotests.cloud" + sessionId() + ".mp4"
-                + "' type='video/mp4'></video></body></html>";
+        if (Configuration.remote == null) {
+            return "Видео доступно только при удалённом запуске";
+        }
+
+        String remoteUrl = Configuration.remote; // например: https://user:pass@selenoid.autotests.cloud/wd/hub
+        String baseUrl = remoteUrl.replace("/wd/hub", "");
+        String videoUrl = baseUrl + "/video/" + sessionId() + ".mp4";
+
+        return "<html><body>" +
+                "<video width='100%' height='100%' controls autoplay>" +
+                "<source src='" + videoUrl + "' type='video/mp4'>" +
+                "</video></body></html>";
     }
+
 
     // Для мобилок (Browserstack)
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
