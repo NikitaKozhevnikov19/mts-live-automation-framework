@@ -1,0 +1,35 @@
+package tests.web;
+
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import helpers.Attachments;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+
+import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
+
+public class WebTestBase {
+
+    @BeforeAll
+    static void setup() {
+        Configuration.baseUrl = "https://live.mts.ru";
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserVersion = System.getProperty("browserVersion", "121.0");
+        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
+
+        String remoteUrl = System.getProperty("remoteUrl");
+        if (remoteUrl != null) {
+            Configuration.remote = remoteUrl;
+        }
+
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+    }
+
+    @AfterEach
+    void tearDown() {
+        Attachments.screenshotAs("Last screenshot");
+        Attachments.pageSource();
+        closeWebDriver();
+    }
+}
