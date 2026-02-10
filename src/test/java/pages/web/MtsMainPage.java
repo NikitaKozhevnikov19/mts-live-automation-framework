@@ -38,7 +38,8 @@ public class MtsMainPage {
 
     @Step("Выполнить поиск по запросу: {query}")
     public MtsMainPage searchEntity(String query) {
-        searchInput.shouldBe(visible, Duration.ofSeconds(10)).click();
+        searchInput.shouldBe(visible, Duration.ofSeconds(10))
+                .click(ClickOptions.usingJavaScript());
         searchInput.setValue(query).pressEnter();
         return this;
     }
@@ -60,7 +61,8 @@ public class MtsMainPage {
 
     @Step("Выбрать диапазон дат в календаре: с {startDay} по {endDay}")
     public MtsMainPage selectDateRange(String startDay, String endDay) {
-        dateFilterBtn.shouldBe(visible, Duration.ofSeconds(10)).click();
+        dateFilterBtn.shouldBe(visible, Duration.ofSeconds(10))
+                .click(ClickOptions.usingJavaScript());
 
         calendarDays.filter(text(startDay)).first()
                 .shouldBe(visible, Duration.ofSeconds(5))
@@ -85,7 +87,7 @@ public class MtsMainPage {
 
     @Step("Сменить город на: {cityName}")
     public MtsMainPage changeCity(String cityName) {
-        cityButton.shouldBe(visible).click();
+        cityButton.shouldBe(visible).click(ClickOptions.usingJavaScript());
         $(byTagAndText("a", cityName))
                 .shouldBe(exist, Duration.ofSeconds(5))
                 .click(ClickOptions.usingJavaScript());
@@ -112,7 +114,8 @@ public class MtsMainPage {
 
     @Step("Нажать на стрелку 'Следующий слайд'")
     public MtsMainPage clickNextSlide() {
-        nextSlideBtn.shouldBe(visible, Duration.ofSeconds(10)).click();
+        nextSlideBtn.shouldBe(visible, Duration.ofSeconds(10))
+                .click(ClickOptions.usingJavaScript());
         return this;
     }
 
