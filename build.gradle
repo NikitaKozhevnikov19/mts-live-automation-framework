@@ -11,6 +11,7 @@ repositories {
     mavenCentral()
 }
 
+// Версии для UI и Mobile
 def restAssuredVersion = "5.4.0"
 def allureVersion = "2.25.0"
 def selenideVersion = "7.2.3"
@@ -21,14 +22,14 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 dependencies {
-    // REST API + DTO
+    // Оставляем для видео Browserstack и работы с JSON
     testImplementation "io.rest-assured:rest-assured:$restAssuredVersion"
     testImplementation "com.fasterxml.jackson.core:jackson-databind:2.16.1"
 
     // UI (Selenide)
     testImplementation "com.codeborne:selenide:$selenideVersion"
 
-    // MOBILE
+    // MOBILE (Appium)
     testImplementation "io.appium:java-client:$appiumVersion"
 
     // INFRASTRUCTURE & CONFIG
@@ -39,7 +40,6 @@ dependencies {
     testImplementation "org.slf4j:slf4j-simple:2.0.12"
 
     // ALLURE
-    testImplementation "io.qameta.allure:allure-rest-assured:$allureVersion"
     testImplementation "io.qameta.allure:allure-selenide:$allureVersion"
     testImplementation "io.qameta.allure:allure-junit5:$allureVersion"
     testImplementation "org.aspectj:aspectjweaver:1.9.22"
@@ -56,7 +56,9 @@ allure {
 }
 
 tasks.withType(Test).configureEach {
-    useJUnitPlatform()
+    useJUnitPlatform {
+        includeTags System.getProperty("groups", "all")
+    }
 
     systemProperties(System.getProperties())
     systemProperty "file.encoding", "UTF-8"
