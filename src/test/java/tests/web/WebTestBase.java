@@ -6,6 +6,7 @@ import helpers.Attachments;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
@@ -37,6 +38,10 @@ public class WebTestBase {
         }
 
         Configuration.timeout = 10000;
+    }
+
+    @BeforeEach
+    void addListener() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
@@ -53,6 +58,7 @@ public class WebTestBase {
             Attachments.addVideo();
         }
 
+        SelenideLogger.removeListener("AllureSelenide");
         closeWebDriver();
     }
 }
