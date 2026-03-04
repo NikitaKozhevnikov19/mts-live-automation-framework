@@ -255,7 +255,7 @@ Mobile-тесты направлены на проверку мобильног�
 
 Для запуска мобильных тестов на локальном эмуляторе (когда запущен AppiumServer, эмулятор и скачан apk), используй эту команду::
 ```bash
-./gradlew clean test --tests tests.mobile.MtsLiveMobileTests -DdeviceHost=emulation
+./gradlew clean test -DdeviceHost=emulation -Dgroups=android
 ```
 ### ⚙️ Настройка параметров Mobile-тестов в Jenkins
 
