@@ -9,6 +9,7 @@ import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byTagAndText;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class MtsMainPage {
@@ -20,7 +21,8 @@ public class MtsMainPage {
             nextSlideBtn = $("button[aria-label='Следующий слайд']");
 
     private final ElementsCollection
-            headerLinks = $$("a[class*='NavigationMenuItem_link']");
+            headerLinks = $$("a[class*='NavigationMenuItem_link__12_nL']");
+
 
     @Step("Открыть главную страницу МТС Live")
     public void openPage() {
@@ -36,7 +38,7 @@ public class MtsMainPage {
 
     @Step("Нажать на категорию в меню: {categoryName}")
     public void clickHeaderCategory(String categoryName) {
-        headerLinks.findBy(text(categoryName))
+        $(byText(categoryName))
                 .shouldBe(visible, Duration.ofSeconds(10))
                 .click(ClickOptions.usingJavaScript());
     }
