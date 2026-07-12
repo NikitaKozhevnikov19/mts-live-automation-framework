@@ -1,7 +1,6 @@
 package pages.web;
 
 import com.codeborne.selenide.ClickOptions;
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
@@ -19,9 +18,6 @@ public class MtsMainPage {
             searchInput = $("input[type='search']"),
             footer = $("footer"),
             nextSlideBtn = $("button[aria-label='Следующий слайд']");
-
-    private final ElementsCollection
-            headerLinks = $$("a[class*='NavigationMenuItem_link__12_nL']");
 
 
     @Step("Открыть главную страницу МТС Live")
